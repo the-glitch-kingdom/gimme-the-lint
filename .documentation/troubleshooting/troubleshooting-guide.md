@@ -110,6 +110,17 @@ npm install --save-dev eslint-plugin-security eslint-plugin-no-secrets \
 
 See the Lint Rules Guide for the full ESLint dev-dependency list.
 
+## "ERROR &lt;linter&gt; — exited N without reporting anything"
+
+The linter ran and failed: a broken config, a missing plugin, a killed process. Nothing
+was checked. The linter's own error follows the message. `check` warns and lets the commit
+through unless you pass `--fail-on-skip`; `baseline` reports itself incomplete.
+
+Older versions recorded this as `clean`. If a baseline was captured while the linter was
+broken, everything it finds after you repair it shows as new, so re-run
+`gimme-the-lint baseline`. See
+[the fact](../knowledge-base/facts/a-linter-crash-looks-like-a-clean-run.md).
+
 ## `install` did not seed a `biome.json` / `pyproject.toml`
 
 Biome and Ruff are *detected by* their config file, so a discovered app already
@@ -132,14 +143,14 @@ A linter that applies to an app could not run — it is not installed
 commits against the baseline would flag every pre-existing violation as new.
 `migrate` and `baseline` now fail loudly instead of reporting a false success.
 
-Fix it: install the missing linter(s) named in the summary, then re-run
+Fix it: install or repair the linter(s) named in the summary, then re-run
 `gimme-the-lint baseline`. To accept an incomplete baseline deliberately, pass
 `--allow-incomplete`.
 
 ## `hooks` refuses to install — "the baseline is incomplete"
 
 Same cause: some linters were never baselined. Installing hooks would gate
-commits against an incomplete baseline. Install the missing linters and re-run
+commits against an incomplete baseline. Install or repair those linters and re-run
 `gimme-the-lint baseline`, or pass `gimme-the-lint hooks --force` to install
 anyway (and re-baseline as soon as the linters are available).
 
