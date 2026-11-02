@@ -236,7 +236,7 @@ program
         console.error(
           chalk.red(
             `✗ Baseline INCOMPLETE — ${report.incomplete.length} linter(s) not captured. ` +
-              'Install them and re-run, or pass --allow-incomplete.\n'
+              'Install or repair them and re-run, or pass --allow-incomplete.\n'
           )
         );
         process.exit(1);
