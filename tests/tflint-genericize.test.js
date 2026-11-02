@@ -52,12 +52,21 @@ class StubTflint extends TflintAdapter {
 describe('Task 1 — tflint failed runs are not silent clean baselines', () => {
   const tf = new TflintAdapter({ projectRoot: '/proj' });
 
-  it('a non-zero exit with no JSON yields a tflint-error violation', () => {
-    const v = tf.parse('', 'Plugin `foo` not installed; run `tflint --init`', 1);
-    assert.strictEqual(v.length, 1);
-    assert.strictEqual(v[0].ruleId, 'tflint-error');
-    assert.strictEqual(v[0].severity, 'error');
-    assert.match(v[0].message, /tflint --init/);
+  it('a non-zero exit with no JSON cannot be grandfathered: lint() throws, carrying stderr', () => {
+    // No violation from parse(): `baseline` would capture one as debt.
+    assert.deepStrictEqual(tf.parse('', 'Plugin `foo` not installed', 1), []);
+
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gtl-tflint-fail-'));
+    try {
+      const bin = path.join(dir, 'tflint');
+      fs.writeFileSync(bin, '#!/bin/sh\necho "Plugin foo not installed; run tflint --init" >&2\nexit 1\n', { mode: 0o755 });
+      const adapter = new TflintAdapter({ projectRoot: dir });
+      adapter.buildCommand = () => ({ cmd: bin, args: [], cwd: dir });
+      adapter.initCommand = () => null;
+      assert.throws(() => adapter.lint([]), /tflint exited 1[\s\S]*tflint --init/);
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
   });
 
   it('a clean exit with no output is an empty (genuinely clean) result', () => {

@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- **A linter that crashed was recorded as clean.** ESLint with a config importing a missing
+  plugin exits 2 with empty stdout, and every adapter read empty output as zero violations.
+  `baseline` recorded `clean`, and `check` printed `Safe to commit` on later commits,
+  including ones adding violations. Biome with a broken `biome.json` did the same. A
+  non-zero exit with no findings is now status `error`, for every adapter using the shared
+  `lint()`: `check` reports it as not run, `baseline` reports itself incomplete, and
+  `--fail-on-skip` blocks.
+
+  **What you may see after upgrading:** a new `ERROR <linter>` line where a broken linter
+  used to pass silently. A baseline captured while it was broken holds zero fingerprints,
+  so after repairing the linter, re-run `gimme-the-lint baseline`.
+
+  **tflint:** a crash with no JSON output is now this same error rather than a
+  `tflint-error` violation. That violation blocked once, but `baseline` could grandfather
+  it, after which a broken tflint passed every check. It no longer blocks by default.
+  Terraform parse errors tflint reports in its JSON `errors` array are still violations.
+
 ## [2.9.0] - 2026-09-01
 
 ### Fixed
