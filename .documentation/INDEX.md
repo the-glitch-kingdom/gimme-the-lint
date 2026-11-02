@@ -192,7 +192,7 @@ purpose: Navigation hub for all documentation
 | Document | Tier | Status | Updated |
 |----------|------|--------|----------|
 | [Contract Troubleshooting](troubleshooting/contract-troubleshooting-guide.md) | guide | active | 2026-07-13 |
-| [Troubleshooting](troubleshooting/troubleshooting-guide.md) | guide | active | 2026-07-13 |
+| [Troubleshooting](troubleshooting/troubleshooting-guide.md) | guide | active | 2026-11-02 |
 
 ---
 

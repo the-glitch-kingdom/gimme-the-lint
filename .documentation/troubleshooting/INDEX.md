@@ -26,7 +26,7 @@ purpose: Complete listing of troubleshooting documentation
 | Document | Status | Updated | Words |
 |----------|--------|---------|-------|
 | [Contract Troubleshooting](contract-troubleshooting-guide.md) | active | 2026-07-13 | 572 |
-| [Troubleshooting](troubleshooting-guide.md) | active | 2026-07-13 | 721 |
+| [Troubleshooting](troubleshooting-guide.md) | active | 2026-11-02 | 721 |
 
 ## Keywords
 

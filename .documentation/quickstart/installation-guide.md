@@ -54,6 +54,10 @@ gimme-the-lint install
 /plugin install TheGlitchKing/gimme-the-lint
 ```
 
+This needs no project `npm install`. Git hooks find the CLI in the plugin cache
+(`~/.claude/plugins/cache`, or under `CLAUDE_CONFIG_DIR` if set) when it is not in
+`node_modules` or on `PATH`, and use the newest version there.
+
 ## Install modes
 
 | Mode | Command | Use when |
