@@ -26,6 +26,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   it, after which a broken tflint passed every check. It no longer blocks by default.
   Terraform parse errors tflint reports in its JSON `errors` array are still violations.
 
+- **`install` crashed on a plugin-only setup** with `TypeError: chalk.blue is not a
+  function`. `chalk` is no longer a dependency; the few colours used live in `lib/chalk.js`.
+  (#39)
+
+- **Hooks gated nothing on a plugin-only setup.** The `hooks --print` snippet and the
+  installed hooks looked only in `node_modules` and `PATH`, so they printed a skip message.
+  They now also look in the Claude Code plugin cache, using the newest version. Hooks are
+  installed files, so re-run `gimme-the-lint hooks`, or refresh a composed block with
+  `hooks --print`. (#39)
+
 ## [2.9.0] - 2026-09-01
 
 ### Fixed

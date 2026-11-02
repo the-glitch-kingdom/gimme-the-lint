@@ -27,8 +27,8 @@ purpose: Quick reference for troubleshooting documentation
 
 ## Recently Updated
 
+- [Troubleshooting](troubleshooting-guide.md) - 2026-11-02
 - [Contract Troubleshooting](contract-troubleshooting-guide.md) - 2026-07-13
-- [Troubleshooting](troubleshooting-guide.md) - 2026-07-13
 
 ## By Status
 

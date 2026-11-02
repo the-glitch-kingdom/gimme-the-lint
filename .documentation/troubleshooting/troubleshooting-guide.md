@@ -83,6 +83,9 @@ workstation image (CodeArtifact / pre-baked AMI) and re-run.
   instead: `gimme-the-lint hooks --print pre-commit >> <your hook>`.
 - `hooks --force` overwrites anyway, backing the file up to
   `<hook>.backup.<timestamp>`; `uninstall` restores it.
+- The hook prints "not installed, skipping" or "run-checks.sh not found, skipping" on a
+  plugin-only install? It predates plugin-cache lookup. Re-run `gimme-the-lint hooks`, or
+  refresh a composed block with `hooks --print`.
 - Bypass in an emergency with `git commit --no-verify`.
 
 Full detail: [Git hooks guide](../procedures/git-hooks-guide.md).
