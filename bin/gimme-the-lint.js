@@ -36,7 +36,7 @@ program
   .option('--no-baseline', 'Greenfield: write empty baselines (strict from day one)')
   .action(async (opts) => {
     const installer = require('../lib/installer');
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
 
     console.log(chalk.blue('\ngimme-the-lint: Installing progressive linting system...\n'));
 
@@ -106,7 +106,7 @@ program
   .command('uninstall')
   .description('Remove gimme-the-lint from the current project')
   .action(async () => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const gitHooksManager = require('../lib/git-hooks-manager');
     const configManager = require('../lib/config-manager');
 
@@ -182,7 +182,7 @@ program
       'A skip means UNVERIFIED, and in CI a warning scrolls past while the job goes green.'
   )
   .action(async (opts) => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const { runCheck } = require('../lib/check');
     const { formatCheckReport } = require('../lib/report');
     try {
@@ -219,7 +219,7 @@ program
   .option('--empty', 'Write empty baselines (greenfield: treat every violation as new)')
   .option('--allow-incomplete', 'Exit 0 even if some linters could not be baselined')
   .action(async (target, opts) => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const { runBaseline } = require('../lib/baseline');
     const { formatBaselineReport } = require('../lib/report');
     // [target] is accepted for backward compatibility; v2 baselines every unit.
@@ -254,7 +254,7 @@ program
   .option('--allow-incomplete', 'Exit 0 even if some linters could not be baselined')
   .option('--rules', 'Migrate baselines through rule renames/removals (no layout change)')
   .action(async (opts) => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const { migrate, migrateRules } = require('../lib/migrate');
 
     // --rules: rewrite baseline fingerprints through the per-linter rule-alias
@@ -352,7 +352,7 @@ program
   .description('Run the checks that need a database or network (CI only — never a git hook)')
   .option('--offline', 'Air-gapped: fail rather than silently skip external checks')
   .action(async (opts) => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const { runVerify } = require('../lib/verify');
     const { formatCheckReport } = require('../lib/report');
 
@@ -380,7 +380,7 @@ program
   .command('materialize')
   .description('Write down the API contract your code computes at runtime (openapi.json)')
   .action(async () => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const fs = require('fs-extra');
     const path = require('path');
     const { resolveUnits } = require('../lib/units');
@@ -515,7 +515,7 @@ program
     'Print a snippet to embed in an existing hook (pre-commit|pre-push) instead of installing'
   )
   .action(async (opts) => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const gitHooksManager = require('../lib/git-hooks-manager');
     const { findIncompleteBaselines } = require('../lib/baseline');
 
@@ -600,7 +600,7 @@ program
   .action((action) => {
     if (action === 'status') {
       const venvManager = require('../lib/venv-manager');
-      const chalk = require('chalk');
+      const chalk = require('../lib/chalk');
       const status = venvManager.getStatus(process.cwd());
 
       console.log(chalk.blue('\nPython Virtual Environment Status:\n'));
@@ -618,7 +618,7 @@ program
   .command('status')
   .description('Show overall gimme-the-lint status')
   .action(async () => {
-    const chalk = require('chalk');
+    const chalk = require('../lib/chalk');
     const venvManager = require('../lib/venv-manager');
     const gitHooksManager = require('../lib/git-hooks-manager');
     const configManager = require('../lib/config-manager');
