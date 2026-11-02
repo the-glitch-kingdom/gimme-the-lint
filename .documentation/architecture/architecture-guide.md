@@ -19,7 +19,7 @@ last_validated: 2026-07-17
 gimme-the-lint  (npm, Node)          gtl-contract  (Python, in python/)
 ├── the engine                       ├── the introspector
 │   fingerprint / diff / baseline    │   walks the ORM registry, reads the route table
-├── 17 adapters                      ├── 21 rules
+├── 18 adapters                      ├── 21 rules
 │   eslint ruff clippy tflint …      │   and the incident each one stands on
 │   contract  ←────── shells to ────→└── prints violations as JSON
 └── CLI, hooks, GitHub Action
@@ -133,7 +133,7 @@ they would silently have begun importing your app on every commit. Defaulting to
 
 | adapter | tier | stage |
 |---|---|---|
-| eslint, biome, ruff, golangci-lint, clippy, tflint, ansible-lint, squawk, spectral, buf, codegen-drift | `local` | `commit` |
+| eslint, biome, oxlint, ruff, golangci-lint, clippy, tflint, ansible-lint, squawk, spectral, buf, codegen-drift | `local` | `commit` |
 | contract, openapi, tsc, mypy | `local` | `push` |
 | buf-breaking | `reference` | `push` |
 | alembic-check | `external` | `ci` |

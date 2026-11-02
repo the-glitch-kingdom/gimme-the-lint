@@ -20,7 +20,7 @@ gimme-the-lint v2.0 — polyglot progressive linting.
 - **Node.js** >= 20
 - **Git** — for hooks and staged-file detection
 - A linter for each language you lint:
-  - JavaScript/TypeScript — `eslint` **or** `biome`
+  - JavaScript/TypeScript — `eslint`, `biome` or `oxlint`
   - Python — `ruff`
   - Go — `golangci-lint`
   - Rust — `clippy` (ships with the Rust toolchain)
@@ -56,7 +56,8 @@ gimme-the-lint install
 
 This needs no project `npm install`. Git hooks find the CLI in the plugin cache
 (`~/.claude/plugins/cache`, or under `CLAUDE_CONFIG_DIR` if set) when it is not in
-`node_modules` or on `PATH`, and use the newest version there.
+`node_modules` or on `PATH`, and use the newest version there. An older global install on
+`PATH` runs ahead of the plugin copy, so upgrade or remove it.
 
 ## Install modes
 
@@ -86,6 +87,7 @@ overwritten (`--force` replaces):
 |----------|-------------------------|
 | JS / TS (ESLint) | `eslint.config.js` + `.prettierrc.json` |
 | JS / TS (Biome) | `biome.json` |
+| JS / TS (oxlint) | `.oxlintrc.json` or an `oxlint` dependency |
 | Python (Ruff) | `pyproject.toml` `[tool.ruff]` |
 | Go | `.golangci.yml` |
 | Rust | `clippy.toml` + `Cargo.toml` `[lints.clippy]` |
