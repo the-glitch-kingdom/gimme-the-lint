@@ -25,6 +25,9 @@ elif command -v gimme-the-lint &>/dev/null; then
     # Global install
     GIMME_PROJECT_ROOT="$PROJECT_ROOT" gimme-the-lint check --stage=commit
     exit $?
+else
+    # Claude Code plugin install: no node_modules, not on PATH. Newest version wins.
+    SCRIPT="$(ls -d "${CLAUDE_CONFIG_DIR:-$HOME/.claude}"/plugins/cache/*/gimme-the-lint/*/scripts/run-checks.sh 2>/dev/null | sort -V | tail -1)"
 fi
 
 if [ -z "$SCRIPT" ]; then
