@@ -110,6 +110,7 @@ gimme-the-lint walks the repo and binds each package to its linter:
 |----------|--------|
 | `package.json` | `eslint` |
 | `biome.json` | `biome` (supersedes ESLint for that app) |
+| `.oxlintrc.json`, `.oxlintrc.jsonc`, `oxlintrc.json`, `oxlint.config.ts`, or `oxlint` in `dependencies`/`devDependencies` | `oxlint` (replaces ESLint unless the app has both an ESLint config and a declared `eslint`) |
 | `pyproject.toml` / `requirements.txt` | `ruff` |
 | `go.mod` | `golangci-lint` |
 | `Cargo.toml` | `clippy` |

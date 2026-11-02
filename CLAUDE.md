@@ -23,7 +23,7 @@ This repo is the tool itself, not a consumer of it. Two artifacts ship as one pa
 gimme-the-lint  (npm, Node, lib/)      gtl-contract  (Python, python/)
 ├── the engine: fingerprint /          ├── the introspector: walks the ORM
 │   diff / baseline / drift            │   registry, reads the route table
-├── 17 adapters (one per linter)       ├── 21 rules, each carrying the
+├── 18 adapters (one per linter)       ├── 21 rules, each carrying the
 │   contract.js ──── shells to ───────→│   production incident it stands on
 └── CLI, git hooks, GH Action,         └── prints violations as JSON
     Claude Code plugin

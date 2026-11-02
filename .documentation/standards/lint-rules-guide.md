@@ -29,6 +29,7 @@ never blocks existing code — it is baselined; only *new* violations block.
 |----------|--------|-----------------------------------|----------|
 | JavaScript / TypeScript | ESLint | `eslint.config.js` + `.prettierrc.json` | `package.json` |
 | JavaScript / TypeScript | Biome | `biome.json` | `biome.json` (supersedes ESLint) |
+| JavaScript / TypeScript | oxlint | your `.oxlintrc.json` (none seeded) | an oxlint config or dependency (replaces ESLint unless ESLint is really in use) |
 | Python | Ruff | `pyproject.toml` (`[tool.ruff]`) | `pyproject.toml` / `requirements.txt` / `setup.py` |
 | Go | golangci-lint | `.golangci.yml` | `go.mod` |
 | Rust | Clippy | `clippy.toml` + `Cargo.toml` `[lints.clippy]` | `Cargo.toml` |
@@ -110,6 +111,19 @@ is owned by Prettier — edit `.prettierrc.json` for that.
 live under `linter.rules.<group>`. Formatter options are under `formatter` and
 `javascript.formatter`. Biome has no genuine secret scanner — `noSecrets` is a
 thin heuristic; gitleaks remains the real secret layer.
+
+---
+
+## JavaScript / TypeScript — oxlint
+
+**Config:** yours. `install` seeds nothing for an oxlint app, and no ESLint or Prettier
+config either. An oxlint config at the repo root covers nested apps from the root.
+
+**ESLint alongside it:** ESLint stays bound only when the app has an ESLint config **and**
+`eslint` is declared in `package.json`, at the app or above it. A leftover seeded
+`eslint.config.js` alone does not count and can be deleted.
+
+**How to adjust:** edit your oxlint config. `check --fix` runs `oxlint --fix`.
 
 ---
 

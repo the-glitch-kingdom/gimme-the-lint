@@ -20,7 +20,7 @@ gimme-the-lint v2.0 — polyglot progressive linting.
 - **Node.js** >= 20
 - **Git** — for hooks and staged-file detection
 - A linter for each language you lint:
-  - JavaScript/TypeScript — `eslint` **or** `biome`
+  - JavaScript/TypeScript — `eslint`, `biome` or `oxlint`
   - Python — `ruff`
   - Go — `golangci-lint`
   - Rust — `clippy` (ships with the Rust toolchain)
@@ -86,6 +86,7 @@ overwritten (`--force` replaces):
 |----------|-------------------------|
 | JS / TS (ESLint) | `eslint.config.js` + `.prettierrc.json` |
 | JS / TS (Biome) | `biome.json` |
+| JS / TS (oxlint) | `.oxlintrc.json` or an `oxlint` dependency |
 | Python (Ruff) | `pyproject.toml` `[tool.ruff]` |
 | Go | `.golangci.yml` |
 | Rust | `clippy.toml` + `Cargo.toml` `[lints.clippy]` |

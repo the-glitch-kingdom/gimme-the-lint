@@ -5,7 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.10.0] - 2026-11-02
+
+### Upgrading
+
+- **Apps using oxlint:** run `gimme-the-lint baseline` after upgrading. oxlint is now bound
+  and has no baseline yet, so `check` blocks on its existing findings until you do. The
+  `eslint.config.js` and `.prettierrc.json` that `install` seeded can be deleted.
+- **A linter whose config was broken:** expect a new `ERROR` line, described below.
+- **Plugin-only installs:** re-run `gimme-the-lint hooks`, described below.
+
+### Added
+
+- **oxlint adapter.** (#39) An app with `.oxlintrc.json`, `.oxlintrc.jsonc`, `oxlintrc.json`,
+  `oxlint.config.ts` or an `oxlint` dependency is baselined and checked with oxlint, and
+  `--fix` works. ESLint is no longer bound to it unless the app has both an ESLint config and
+  a declared `eslint`, and `install` seeds no ESLint or Prettier config there. A config at the
+  repo root covers nested apps. The same `install` guard now applies to Biome apps on the
+  legacy `frontend/` path.
 
 ### Fixed
 

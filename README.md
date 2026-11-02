@@ -55,7 +55,7 @@ is ever flagged. (In v1 this job was outsourced to the third-party
 
 Each app is bound to the linters its package manifest implies — `package.json`
 → ESLint, `pyproject.toml` → Ruff, `go.mod` → golangci-lint, `Cargo.toml` →
-Clippy, `biome.json` → Biome, `ansible.cfg` / `galaxy.yml` → ansible-lint.
+Clippy, `biome.json` → Biome, `.oxlintrc.json` → oxlint, `ansible.cfg` / `galaxy.yml` → ansible-lint.
 Terraform has no manifest, so a directory of `*.tf` / `*.tofu` files binds to
 tflint by extension. Drift detection runs per app, so a config or linter-version
 change in one app never churns the baselines of another.
@@ -88,6 +88,7 @@ change in one app never churns the baselines of another.
 |----------|--------|----------|
 | JavaScript / TypeScript | `eslint` | `package.json` |
 | JavaScript / TypeScript | `biome` | `biome.json` (supersedes ESLint) |
+| JavaScript / TypeScript | `oxlint` | `.oxlintrc.json` or an `oxlint` dependency (replaces ESLint unless ESLint is really in use) |
 | Python | `ruff` | `pyproject.toml`, `requirements.txt`, `setup.py` |
 | Go | `golangci-lint` | `go.mod` |
 | Rust | `clippy` (`cargo clippy`) | `Cargo.toml` |

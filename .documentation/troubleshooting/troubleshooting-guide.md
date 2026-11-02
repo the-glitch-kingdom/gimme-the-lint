@@ -24,6 +24,7 @@ linter:
 
 - ESLint: `npm install --save-dev eslint`
 - Biome: `npm install --save-dev @biomejs/biome`
+- oxlint: `npm install --save-dev oxlint`
 - Ruff: `pip install ruff` (into the project `.venv`)
 - Go: install `golangci-lint`
 - Rust: `clippy` ships with `rustup`
