@@ -11,6 +11,7 @@ last_verified: 2026-11-02T00:00:00.000Z
 verify_command: |
   #!/usr/bin/env bash
   set -euo pipefail
+  cd "$(git rev-parse --show-toplevel)"
   node -e "
   const assert = require('assert');
   const { LinterAdapter } = require('./lib/adapters/adapter');
@@ -21,12 +22,17 @@ verify_command: |
   }
   assert.throws(() => new Crash({ projectRoot: '.' }).lint([]), (e) => e.code === 'ADAPTER_FAILED');
   "
+provenance:
+  - sources/gimme-the-lint-pr-40
+sources:
+  - lib/adapters/adapter.js
 tags:
   - gotcha
   - silent-failure
   - eslint
   - biome
 invalidated_by:
+  - A linter starts reporting its own failures as parseable findings
 last_validated: 2026-11-02
 ---
 
@@ -37,6 +43,10 @@ last_validated: 2026-11-02
 ESLint 9 with a config that imports a missing plugin exits 2 with empty stdout. Biome with
 a broken `biome.json` exits 1 with empty stdout. An adapter's `parse()` returns `[]` for
 empty output, which is also what a clean run returns. Only the exit code tells them apart.
+
+## How to verify
+
+Run the `verify_command`, or `tests/adapter-failed-run.test.js`.
 
 ## Why it matters
 

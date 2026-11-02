@@ -4,7 +4,7 @@ tier: guide
 domains:
   - troubleshooting
 status: active
-last_updated: 2026-07-13T00:00:00.000Z
+last_updated: 2026-11-02T00:00:00.000Z
 version: 2.7.0
 word_count: 721
 estimated_read_time: 4 minutes
